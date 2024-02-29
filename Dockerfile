@@ -10,8 +10,10 @@ COPY . /Budget-App
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
+# give it executable permission
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
+# container will be listning on port 3000
 EXPOSE 3000
 
 # Start the main process.
