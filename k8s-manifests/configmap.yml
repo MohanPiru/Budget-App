@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-configmap
+data:
+ # rails-env: production
+  postgres-host: demo-postgres.default.svc.cluster.local #db-service.namespace.svc.cluster.local

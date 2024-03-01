@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-web
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: demo-web
+  template:
+    metadata:
+      labels:
+        app: demo-web
+    spec:
+      containers:
+      - name: demo-web
+        image: mohanpiru/ruby-app-demo:latest
+        env:
+        # - name: RAILS_ENV
+        #   valueFrom:
+        #     configMapKeyRef:
+        #       name: postgres-configmap
+        #       key: rails-env
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: postgres-configmap
+              key: postgres-host
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: db
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: username
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secret
+              key: password
+        # - name: RAILS_MASTER_KEY
+        #   valueFrom:
+        #     secretKeyRef:
+        #       name: postgres-secret
+        #       key: rails-master-key
+        ports:
+        - containerPort: 3000
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: budget-app-svc
+  labels: 
+    app: demo-web
+spec:
+  selector:
+    app: demo-web
+  ports:
+    - protocol: TCP
+      targetPort: 3000
+      port: 31000
+  type: NodePort 
