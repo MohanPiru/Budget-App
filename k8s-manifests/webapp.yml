@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: demo-web
-        image: mohanpiru/ruby-app-demo:latest
+        image: mohanpiru/compress-budgetapp:latest
         env:
         # - name: RAILS_ENV
         #   valueFrom:

@@ -51,8 +51,11 @@ kind: Service
 metadata:
   name: demo-postgres
 spec:
+  type: ClusterIP
   selector:
     app: demo-postgres
   ports:
-    - protocol: TCP
-      port: 5432
+  - port: 5432
+    targetPort: 5432
+    protocol: TCP
+    name: prod-postgres
