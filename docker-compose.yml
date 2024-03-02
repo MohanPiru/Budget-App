@@ -19,7 +19,7 @@ services:
     volumes:
       - app-storage:/Budget-App
     environment:
-      - POSTGRES_HOST=db
+      - POSTGRES_HOST=${POSTGRES_HOST}
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}  

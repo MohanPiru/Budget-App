@@ -20,14 +20,17 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  host: demo-postgres.default.svc.cluster.local
+  host: <%= ENV['POSTGRES_HOST'] %>
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
   database: <%= ENV['POSTGRES_DB'] %>  
 
 development:
   <<: *default
-  database: Budget-App_development
+  host: <%= ENV['POSTGRES_HOST'] %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  database: <%= ENV['POSTGRES_DB'] %>  
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -85,6 +88,7 @@ test:
 #
 production:
   <<: *default
-  database: Budget-App_production
+  host: <%= ENV['POSTGRES_HOST'] %>
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
+  database: <%= ENV['POSTGRES_DB'] %>  
