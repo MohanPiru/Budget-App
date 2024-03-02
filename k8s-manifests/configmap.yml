@@ -4,4 +4,4 @@ metadata:
   name: postgres-configmap
 data:
  # rails-env: production
-  postgres-host: demo-postgres.default.svc.cluster.local #db-service.namespace.svc.cluster.local
+  postgres-host: db #demo-postgres.default.svc.cluster.local #db-service.namespace.svc.cluster.local
