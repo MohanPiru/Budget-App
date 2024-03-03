@@ -41,3 +41,7 @@ minikube service budget-app-svc
 
 
 ![Alt text](argocd-budget-app.png)
+
+
+* The docker image used in webapp.yml file is build from the multistage-Dockerfile [it is lightweight]
+* you can use the actual image **mohanpiru/budget-app:latest** [it is also public]
